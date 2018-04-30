@@ -5,4 +5,8 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^random_number/$', views.random_generator, {'max_rand':100}, name='number generator default'),
     url(r'^random_number/(?P<max_rand>\d+)/$', views.random_generator, name='number generator max given'),
+    url(r'^(?P<question_id>\d+)/$', views.detail, name = 'detail'),
+    url(r'^(?P<question_id>\d+)/results/$', views.results, name='results'),
+    url(r'^(?P<question_id>\d+)/vote/$', views.vote, name='vote'),
+
 ]
