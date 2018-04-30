@@ -11,7 +11,7 @@ def index(request):
     return HttpResponse("Hello World (Polls Index)")
 
 
-def random_generator(request, max_rand=1000):
+def random_generator(request, max_rand):
     random_int = random.randrange(0, int(max_rand))
     message = 'Random number generated between 0 and %s: %d' % (max_rand, random_int)
     return HttpResponse(message)
