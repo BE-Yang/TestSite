@@ -3,12 +3,15 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Question, Choice
 import random
 # Create your views here.
 
 
 def index(request):
-    return HttpResponse("Hello World (Polls Index)")
+    latest_questions_list = Question.objects.order_by('pub_date')[:5]
+    message = ', '.join([q.question_text for q in latest_questions_list])
+    return HttpResponse(message)
 
 
 def random_generator(request, max_rand):
