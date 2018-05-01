@@ -4,17 +4,18 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Question, Choice
-from django.template import loader
+# from django.template import loader
 import random
 # Create your views here.
 
 
 def index(request):
     latest_questions_list = Question.objects.order_by('pub_date')[:5]
-    template = loader.get_template('polls/index.html')
+    # template = loader.get_template('polls/index.html')
     context = {'latest_questions_list':latest_questions_list}
-    message = ', '.join([q.question_text for q in latest_questions_list])
-    return HttpResponse(template.render(context, request))
+    # message = ', '.join([q.question_text for q in latest_questions_list])
+    # return HttpResponse(template.render(context, request))
+    return render(request, 'polls/index.html', context)
 
 
 def random_generator(request, max_rand):
