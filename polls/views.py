@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import Question, Choice
+from django.core.urlresolvers import reverse
 # from django.template import loader
 import random
 # Create your views here.
