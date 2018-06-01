@@ -9,7 +9,7 @@
     <ul>
         {%for choice in question.choice_set.all%}
             <li>{{choice.choice_text}} -- {{choice.votes}} vote{{choice.votes|pluralize}}</li>
-            #pluralize adds the 's' if choice.votes != 1
+            <!--pluralize adds the 's' if choice.votes != 1-->
         {%endfor%}
     </ul>
 <a href="{% url 'polls:detail' question.id %}"> Vote again?</a>
