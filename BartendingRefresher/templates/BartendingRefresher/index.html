@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BartendingRefresher</title>
+</head>
+<body>
+{% if DrinkTypes %}
+    <ul>
+        {% for drinkType in DrinkTypes %}
+            <li>{{drinkType.name}}</li>
+        {% endfor %}
+    </ul>
+{% else %}
+<p>Bar is closed.</p>
+{% endif %}</body>
+</html>

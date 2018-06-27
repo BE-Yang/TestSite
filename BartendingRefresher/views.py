@@ -3,15 +3,19 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 from django.http.response import HttpResponse
+from django.views import generic
+from . import models
 
 # Create your views here.
 
-def index(request):
-    message = 'Welcome to Bartending Refresher Game. Currently under construction'
-    return HttpResponse(message)
+class IndexView(generic.ListView):
+    template_name = 'BartendingRefresher/index.html'
+    context_object_name = 'DrinkTypes'
 
-def drinkstype1(request):
-    pass
 
-def drinkstype2(request):
+    def get_queryset(self):
+        return models.Drink.objects.all()
+
+
+class SubmitView(generic):
     pass
