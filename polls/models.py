@@ -6,6 +6,7 @@ from django.utils import timezone
 import datetime
 # Create your models here.
 
+
 class Question(models.Model):
     question_text = models.CharField(max_length = 200)
     pub_date = models.DateTimeField('date published')
@@ -14,9 +15,12 @@ class Question(models.Model):
         return self.question_text
     
     def was_recently_published(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        return timezone.now() >= self.pub_date >= timezone.now() - datetime.timedelta(days=1)
     
-    
+    was_recently_published.admin_order_field = 'pub_date'
+    was_recently_published.boolean = True
+    was_recently_published.short_description = 'Published recently?'
+
 class Choice(models.Model):
     choice_text = models.CharField(max_length = 200)
     votes = models.IntegerField(default = 0)
