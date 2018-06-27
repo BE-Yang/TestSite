@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('polls/', include('polls.urls')),
+    url('bargame/', include('BartendingRefresher.urls'))
 ]
