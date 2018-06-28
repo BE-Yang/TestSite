@@ -16,7 +16,7 @@ class Drink(models.Model):
     class Meta:
         abstract=True
 
-class Martini(models.Model):
+class Martini(Drink):
     pass
 
 class Russian(Drink):
@@ -33,10 +33,10 @@ class Russian(Drink):
 #     garnish = 'None'
 
 
-class Screws(models.Model):
+class Screws(Drink):
     pass
 
-class FizzSours(models.Model):
+class FizzSours(Drink):
     pass
 
 

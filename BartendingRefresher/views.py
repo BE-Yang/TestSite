@@ -17,5 +17,5 @@ class IndexView(generic.ListView):
         return models.Drink.objects.all()
 
 
-class SubmitView(generic):
+class SubmitView(generic.DetailView):
     pass
