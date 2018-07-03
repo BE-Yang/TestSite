@@ -6,26 +6,42 @@ from django.db import models
 # Create your models here.
 
 class Drink(models.Model):
-    glass = models.CharField(max_length=50, default="Old Fashion")
-    alcohol = models.CharField(max_length=50, default='Vodka')
-    method = models.CharField(max_length=50, default='Build')
-
-    def __init__(self, **kwargs):
-        self.name = kwargs.get('name')
+    name = models.CharField(max_length=30)
+    glass = models.CharField(max_length=20)
+    method = models.CharField(max_length=10)
+    alcohol = models.CharField(max_length=10)
 
     class Meta:
-        abstract=True
+        abstract = True
 
-class Martini(Drink):
-    pass
+    @classmethod
+    def create(cls, **kwargs):
+        cls.name = kwargs.get('name')
+        
+    # @classmethod
+    # def Russian(cls, **kwargs):
+    #     drink = cls()
+    #     drink.alcohol = models.CharField(max_length=10, default='Vodka')
+    #     drink.method = models.CharField(max_length=10, default='Build')
+    #     drink.type = models.CharField(max_length=10, default='Russian')
+    #     drink.garnish = models.CharField(max_length=10, default='Cherry')
+    #     drink.glass = 'Rocks'
+    #     drink.name = kwargs.get('name')
+    #     return drink
+#
+#
+# class Martini(Drink):
+#     pass
 
 class Russian(Drink):
-    glass = models.CharField(max_length=10, default='Rocks')
-    alcohol = 'vodka'
-    method = 'Build'
-    type = 'Russian'
-    garnish = 'Cherry'
+    method = models.CharField(max_length=10, default='Build')
+    glass = models.CharField(max_length=20, default='Rocks')
+    alcohol = models.CharField(max_length=20, default='Vodka')
+    second_alcohol = models.CharField(max_length=20, default='Kahlua')
+    garnish = models.CharField(max_length=10, default='Cherry')
 
+    def __init__(self, **kwargs):
+        super(Russian, self).__init__(**kwargs)
 
 # class God(Drink):
 #     glass = 'Rocks'
@@ -33,11 +49,11 @@ class Russian(Drink):
 #     garnish = 'None'
 
 
-class Screws(Drink):
-    pass
-
-class FizzSours(Drink):
-    pass
+# class Screws(Drink):
+#     pass
+#
+# class FizzSours(Drink):
+#     pass
 
 
 class Bartender():
