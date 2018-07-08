@@ -12,9 +12,11 @@ class IndexView(generic.ListView):
     template_name = 'BartendingRefresher/index.html'
     context_object_name = 'DrinkTypes'
 
-
+    #TODO-Fix: Drink model no longer used; Drink has no objects attribute
     def get_queryset(self):
-        return models.Drink.objects.all()
+        VodkaDrinks = models.Ingredient.objects.get(Ingredient='Vodka')
+
+        return VodkaDrinks.russian_Alcohol.all()
 
 
 class SubmitView(generic.DetailView):
