@@ -5,6 +5,7 @@ from django.db import models
 
 # Create your models here.
 class Ingredient(models.Model):
+	# TODO-Suggestion: Captial case the Ingredient field
 	Ingredient = models.CharField(max_length=20, primary_key=True)
 	Type = models.CharField(max_length=10,
 							choices=[
@@ -17,6 +18,7 @@ class Ingredient(models.Model):
 
 	@classmethod
 	def IngredientList(cls, type):
+		# TODO-Fix: Return PK, this will throw queryset eerror
 		return Ingredient.objects.filter(Type=type)
 
 	def __repr__(self):
@@ -39,26 +41,27 @@ class Drink(models.Model):
 #     pass
 
 class Russian(Drink):
+	#TODO-Suggestion Capital case the fields below
 	method = models.CharField(max_length=10, default='Build')
 	glass = models.CharField(max_length=20, default='Rocks')
 	alcohol = models.ForeignKey(Ingredient, related_name='%(class)s_Alcohol', \
 								on_delete=models.CASCADE, default='Vodka')
 	second_alcohol = models.ForeignKey(Ingredient, related_name='%(class)s_Second', \
-									   on_delete=models.CASCADE, default='Kahlua',
-									   limit_choices_to=Ingredient.IngredientList('Al')
-									   )
+										on_delete=models.CASCADE, default='Kahlua',
+										limit_choices_to=Ingredient.IngredientList('Al')
+										)
 	third_alcohol = models.ForeignKey(Ingredient, related_name='%(class)s_Third', \
-									  on_delete=models.CASCADE, blank=True, null=True, \
-									  limit_choices_to=Ingredient.IngredientList('Al')
-									  )
+										on_delete=models.CASCADE, blank=True, null=True, \
+										limit_choices_to=Ingredient.IngredientList('Al')
+										)
 	garnish = models.ForeignKey(Ingredient, related_name='%(class)s_Garnish', \
 								on_delete=models.CASCADE, blank=True, null=True, \
 								limit_choices_to=Ingredient.IngredientList('GR')
 								)
 	filler = models.ForeignKey(Ingredient, related_name='%(class)s_Filler', \
-							   on_delete=models.CASCADE, blank=True, null=True,
-							   limit_choices_to=Ingredient.IngredientList('Fill')
-							   )
+								on_delete=models.CASCADE, blank=True, null=True,
+								limit_choices_to=Ingredient.IngredientList('Fill')
+								)
 
 	def __init__(self, *args, **kwargs):
 		super(Russian, self).__init__(*args, **kwargs)
@@ -67,7 +70,7 @@ class Russian(Drink):
 
 	def __repr__(self):
 		return '%s, %s, %s, %s, %s, %s' %(self.name, self.method, self.glass, \
-										  self.alcohol, self.second_alcohol, self.garnish)
+											self.alcohol, self.second_alcohol, self.garnish)
 
 	def __str__(self):
 		return self.name
