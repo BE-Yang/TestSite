@@ -7,11 +7,11 @@
 <body>
 {% if DrinkTypes %}
     <ul>
-        {% for drinkType in DrinkTypes %}
-            <li>{{drinkType.name}}</li>
+        {% for ModelName, Model in DrinkTypes %}
+        <li><a href="{% url 'BG:detail' Model %}">{{ModelName+'2'}}</a></li>
         {% endfor %}
     </ul>
 {% else %}
-<p>Bar is closed.</p>
+    <p>Bar is closed.</p>
 {% endif %}</body>
 </html>
