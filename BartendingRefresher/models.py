@@ -81,6 +81,7 @@ class Russian(Drink):
 
 	def __str__(self):
 		return self.name
+
 # class God(Drink):
 #     glass = 'Rocks'
 #     type = 'Build'
