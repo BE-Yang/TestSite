@@ -9,22 +9,28 @@ from .models import Drink, Russian, Ingredient
 
 # Create your views here.
 
-class IndexView(generic.ListView):
-    template_name = 'BartendingRefresher/index.html'
-    context_object_name = 'DrinkTypes'
+# class IndexView(generic.ListView):
+#     template_name = 'BartendingRefresher/index.html'
+#     context_object_name = 'DrinkTypes'
+#
+#     #TODO-Fix: Drink model no longer used; Drink has no objects attribute
+#     def get_queryset(self):
+#         # VodkaDrinks = Ingredient.objects.get(Ingredient='Vodka')
+#         #
+#         # return VodkaDrinks.russian_Alcohol.all()
+#         Drink_Types = []
+#         for models in apps.get_app_config('BartendingRefresher').get_models():
+#             if issubclass(models, Drink) and models is not Drink:
+#                 Drink_Types.append(models.__name__)
+#         #TODO-Fix: Make it return all objects of the model or just the model name
+#         return Drink_Types
+def IndexView(request):
+    model_list = []
+    for model in apps.get_app_config('BartendingRefresher').get_models():
+        if issubclass(model, Drink) and model is not Drink:
+            model_list.append(model.__name__)
 
-    #TODO-Fix: Drink model no longer used; Drink has no objects attribute
-    def get_queryset(self):
-        # VodkaDrinks = Ingredient.objects.get(Ingredient='Vodka')
-        #
-        # return VodkaDrinks.russian_Alcohol.all()
-        Drink_Types = []
-        for models in apps.get_app_config('BartendingRefresher').get_models():
-            if issubclass(models, Drink) and models is not Drink:
-                Drink_Types.append(models)
-        #TODO-Fix: Make it return all objects of the model or just the model name
-        return Drink_Types
-
+    return HttpResponse(model_list)
 
 class SubmitView(generic.DetailView):
     pass
