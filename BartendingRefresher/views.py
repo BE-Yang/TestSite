@@ -10,7 +10,7 @@ from .models import Drink, Russian, Ingredient, Bartender
 # Create your views here.
 
 class IndexView(generic.ListView):
-    template_name = 'BartendingRefresher/index.html'
+    template_name = 'BG:/index.html'
     context_object_name = 'DrinkTypes'
 
     #TODO-Fix: Drink model no longer used; Drink has no objects attribute
@@ -18,13 +18,13 @@ class IndexView(generic.ListView):
         # VodkaDrinks = Ingredient.objects.get(Ingredient='Vodka')
         #
         # return VodkaDrinks.russian_Alcohol.all()
-        Drink_Types = {}
+        Drink_Types = []
         for model in apps.get_app_config('BartendingRefresher').get_models():
             if issubclass(model, Drink) and model is not Drink:
-                Drink_Types[model.__name__] = model
-        #TODO-Fix: Make it return all objects of the model or just the model name
-        return HttpResponse(Drink_Types)
+                Drink_Types.append(model.__name__)
 
+        #TODO-Fix: Make it return all objects of the model or just the model name
+        return render(request, 'BG/index.html', {'DrinkTypes':Drink_Types})
 
 # def IndexView(request):
 #     model_list = []
@@ -40,10 +40,18 @@ class IndexView(generic.ListView):
 #         model = Bartender(Model)
 #         return HttpResponse(model.objects.all())
 
-def DetailView(request, Model):
+def DrinkView(request, Model):
 	bartender = Bartender()
 	model = bartender.MakeDrink(Model)
-	return HttpResponse(model.__class__.objects.all())
+	context = {'ListOfDrinks': model.__class__.objects.all()}
+	return render(request, 'BG/ListOfDrinks.html', context)
+
+
+def DetailView(request, Drink):
+	context = {}
+	
+	return render(request, 'BG/detail.html', context)
+
 
 
 
