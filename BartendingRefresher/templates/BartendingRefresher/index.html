@@ -2,16 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>BartendingRefresher</title>
+    <title>Title</title>
 </head>
 <body>
-{% if DrinkTypes %}
-    <ul>
-        {% for ModelName, Model in DrinkTypes %}
-        <li><a href="{% url 'BG:detail' Model %}">{{ModelName+'2'}}</a></li>
+    {% if DrinkTypes %}
+        {% for Type in DrinkTypes %}
+
+            <li><a href={% url "BG:ListOfDrinks" Type %}>{{ Type }}</a></li>
+
         {% endfor %}
-    </ul>
-{% else %}
-    <p>Bar is closed.</p>
-{% endif %}</body>
+    {% else %}
+        <p>Bar is closed.</p>
+
+    {% endif %}
+</body>
 </html>
