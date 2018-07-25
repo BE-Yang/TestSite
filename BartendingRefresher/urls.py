@@ -6,5 +6,5 @@ urlpatterns = [
     url(r'^$', views.IndexView.as_view(), name = 'index'),
     url(r'submit/', views.SubmitView.as_view(), name = 'submit'),
     url(r'^(?P<Model>\w+)/$', views.DrinkView, name = 'ListOfDrinks'),
-    url(r'^Ingredients/(?P<Drink>[\w\s]+)$', views.DetailView, name = 'Detail'),
+    url(r'^(?P<Model>[\w\s]+)/(?P<Drink>[\w\s]+)$', views.DetailView.as_view(), name = 'Detail'),
 ]

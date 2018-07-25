@@ -8,7 +8,7 @@
     {% if DrinkTypes %}
         {% for Type in DrinkTypes %}
 
-            <li><a href={% url "BG:ListOfDrinks" Type %}>{{ Type }}</a></li>
+            <li><a href='{% url "BG:ListOfDrinks" Type %}'>{{ Type }}</a></li>
 
         {% endfor %}
     {% else %}
