@@ -5,11 +5,20 @@
     <title>Title</title>
 </head>
 <body>
-{%if Drinks%}
+{%if Drink%}
 <!--TODO-Suggestion: display the list of ingredients for the drink-->
+{{Drink}}
+    {% for Ingredients in Drink.meta.fields %}
+        <li>{{Ingredients.name}}</li>
+            {% for Field, Ingredient in Ingredients.items %}
+                <li>{{Field}}:  {{Ingredient}}</li>
+            {% endfor %}
+    {%endfor%}
 
-{%else%}
-<p>No Ingredients Yet.</p>
+{% else %}
+
+    <p>No Ingredients Yet.</p>
+
 {%endif%}
 </body>
 </html>

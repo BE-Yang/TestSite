@@ -45,12 +45,20 @@ def DrinkView(request, Model):
 	return render(request, 'BartendingRefresher/ListOfDrinks.html', context)
 
 class DetailView(generic.ListView):
+	#passed Model and Drink name. Need to call Factory method Bartender to return Model and then
+	#Query to get ingredients list with pk="drink name"
+	#return the list of ingredients to detail page.
+
+	#How to get passed parameter...model... and drink name...?
 	template_name = 'BartendingRefresher/detail.html'
-	context_object_name = 'Ingredients'
+	context_object_name = 'Drink'
 
 	def get_queryset(self):
-		context=super(DetailView, self).get_context_data(self)
-		return
+		context=super(DetailView, self)
+		bartender = Bartender()
+		model = bartender.MakeDrink(self.kwargs['Model'])
+
+		return model.__class__.objects.get(name=self.kwargs['Drink'])
 
 
 # def DetailView(request, Drink):
