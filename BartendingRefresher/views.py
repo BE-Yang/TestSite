@@ -41,7 +41,10 @@ class IndexView(generic.ListView):
 def DrinkView(request, Model):
 	bartender = Bartender()
 	model = bartender.MakeDrink(Model)
-	context = {'ListOfDrinks': model.__class__.objects.all(), 'Model': Model}
+	context = {
+		'ListOfDrinks': model.__class__.objects.all(),
+		'Model': Model
+		}
 	return render(request, 'BartendingRefresher/ListOfDrinks.html', context)
 
 class DetailView(generic.ListView):
@@ -64,7 +67,7 @@ class DetailView(generic.ListView):
 # def DetailView(request, Drink):
 # 	context = {'test':Drink}
 #
-# 	return render(request, 'BartendingRefresher/detail.html', context)
+# 	return render(request, 'BartendingRefresher /detail.html', context)
 #
 #
 

@@ -39,6 +39,8 @@ class Drink(models.Model):
 	class Meta:
 		abstract = True
 
+	def get_fields_and_values(self):
+		return [(field.name.capitalize(), field.value_to_string(self)) for field in self.__class__._meta.fields]
 #
 # class Martini(Drink):
 #     pass

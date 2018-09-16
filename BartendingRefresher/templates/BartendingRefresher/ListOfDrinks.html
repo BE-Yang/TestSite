@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>List of Drinks</title>
-</head>
-<body>
+{% extends 'BartendingRefresher/basetemplate.html' %}
+
+{% block body %}
     {%if ListOfDrinks%}
         {%for Drink in ListOfDrinks%}
             <li><a href="{% url 'BG:Detail' Model Drink.name %}">{{ Drink }}</a></li>
@@ -12,5 +8,4 @@
     {%else%}
         <p>No drinks for this category yet.</p>
     {%endif%}
-</body>
-</html>
+{% endblock %}

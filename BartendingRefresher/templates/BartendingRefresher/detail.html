@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{%if Drink%}
-<!--TODO-Suggestion: display the list of ingredients for the drink-->
-{{Drink}}
-    {% for Ingredients in Drink.meta.fields %}
-        <li>{{Ingredients.name}}</li>
-            {% for Field, Ingredient in Ingredients.items %}
-                <li>{{Field}}:  {{Ingredient}}</li>
-            {% endfor %}
-    {%endfor%}
+{% extends 'BartendingRefresher/basetemplate.html' %}
 
-{% else %}
+{% block body %}
+    {% if Drink %}
+    <!--TODO-Suggestion: display the list of ingredients for the drink-->
 
-    <p>No Ingredients Yet.</p>
+    <!--{{Drink.get_fields_and_values}}-->
+        {% for Field, Value in Drink.get_fields_and_values %}
+            {% if Value != 'None' %}
+                <li>{{Field}} --- {{Value}}</li>
+            {% endif %}
+                <!--{% for Field, Ingredient in Ingredients.items %}-->
+                    <!--<li>{{Field}}:  {{Ingredient}}</li>-->
+                <!--{% endfor %}-->
+        {%endfor%}
 
-{%endif%}
-</body>
-</html>
+    {% else %}
+
+        <p>No Ingredients Yet.</p>
+
+    {% endif %}
+{% endblock %}
