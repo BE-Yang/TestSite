@@ -59,6 +59,8 @@ class DetailView(generic.ListView):
 	def get_queryset(self):
 		context=super(DetailView, self)
 		bartender = Bartender()
+
+		#Accessing parameters via self.kwargs['parameter variable']
 		model = bartender.MakeDrink(self.kwargs['Model'])
 
 		return model.__class__.objects.get(name=self.kwargs['Drink'])
@@ -71,6 +73,8 @@ class DetailView(generic.ListView):
 #
 #
 
+def AboutView(request):
+	return render(request, 'BartendingRefresher/about.html')
 
 class SubmitView(generic.DetailView):
     pass
